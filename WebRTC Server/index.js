@@ -96,6 +96,18 @@ websocket.on('request', (req) => {
                 }
 
                 break
+
+                  case "end_call":
+                                var userEndCall = findUser(data.target)
+                                if (userEndCall) {
+                                    userEndCall.conn.send(JSON.stringify({
+                                        type: "end_call",
+                                        name: data.name,
+                                        target: data.target
+                                    }))
+                                }
+
+                                break
         }
 
     })
